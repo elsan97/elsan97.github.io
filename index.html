@@ -160,7 +160,7 @@
     async function initHub() {
         try {
 
-            const res = await fetch(`https://github.com{USERNAME}/repos?sort=updated&per_page=100`);
+            const res = await fetch(`https://github.com/{USERNAME}/repos?sort=updated&per_page=100`);
             if (!res.ok) throw new Error('Ошибка связи с GitHub');
             const repos = await res.json();
 
@@ -182,7 +182,7 @@
                 const desc = repo.description ? repo.description : 'Описания проекта не предоставлено.';
                 
 
-                const mainZipUrl = `https://github.com{USERNAME}/${repo.name}/archive/refs/heads/${repo.default_branch}.zip`;
+                const mainZipUrl = `https://github.com/{USERNAME}/${repo.name}/archive/refs/heads/${repo.default_branch}.zip`;
 
                 card.innerHTML = `
                     <div class="repo-title">📦 ${repo.name}</div>
@@ -206,7 +206,7 @@
 
     async function checkReleases(repoName) {
         try {
-            const res = await fetch(`https://github.com{USERNAME}/${repoName}/releases/latest`);
+            const res = await fetch(`https://github.com/{USERNAME}/${repoName}/releases/latest`);
             if (res.ok) {
                 const release = await res.json();
                 const container = document.getElementById(`rel-${repoName}`);
